@@ -1,3 +1,5 @@
 .direnv/
 .envrc
+group_management_app/groupManagementApp/__pycache__
+group_management_app/group_management_app/__pycache__
 
