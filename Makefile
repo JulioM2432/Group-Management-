@@ -1,4 +1,4 @@
 .PHONY: run
 
 run:
-	python manage.py runserver
+	python group_management_app/manage.py runserver
