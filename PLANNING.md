@@ -30,5 +30,3 @@
 - TBD
 
 Our team will evaluate the proposed features in relation to the available development time and project requirements. The features will be prioritized based on their importance to the application's core functionality, and by the end of the sprint, we should have a general idea of the features we want to implement and have assigned appropriate roles for each task.
-
-## Layout the Home Menu:
