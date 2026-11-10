@@ -1,0 +1,11 @@
+{% extends 'home/base.html' %}
+{% block content %}
+<h1>My Projects</h1>
+<ul>
+  {% for project in projects %}
+    <li><a href="{% url 'project_view' project.pk %}">{{ project.title }}</a></li>
+  {% empty %}
+    <li>No projects yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
