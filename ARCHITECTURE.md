@@ -135,6 +135,8 @@ Both creates redirect to the project detail page on success (POST-redirect-GET).
 
 ## Authorization model
 
+### Temporary Till User Auth System is Resolved
+
 This is the most important design decision in the codebase, and the pattern to
 copy for any new project-scoped view.
 
@@ -205,10 +207,8 @@ errors, and include `{% csrf_token %}`:
 
 ## Development environment
 
-Dependencies are managed **entirely by Nix** — there is no `requirements.txt`,
-no `pyproject.toml`, and no virtualenv. `flake.nix` pins nixpkgs to
-`nixos-26.05` and provides `python3` plus `python313Packages.django_6`; `.envrc`
-contains `use flake`, so direnv enters the shell automatically on `cd`.
+Dependencies are managed per person, but **Nix** can be used.
+`flake.nix` pins nixpkgs to `nixos-26.05` and provides `python3` plus `python313Packages.django_6`; `.envrc` contains `use flake`, so direnv enters the shell automatically on `cd`.
 
 ```bash
 direnv allow                                   # or: nix develop
@@ -258,12 +258,7 @@ Carried forward from the original architecture notes and `PLANNING.md` Sprint 1:
   deployment.
 - **`.envrc` is listed in `.gitignore` but is already tracked**, so the ignore
   rule has no effect on it. Harmless; `git rm --cached .envrc` would resolve it.
-- **Test coverage is narrow.** `tests.py` covers project access control and
-  task-assignee restrictions (11 tests, `manage.py test groupManagementApp`).
-  Views, forms, and templates are otherwise unverified.
 - **Navbar is unmodified Bootstrap boilerplate** — "Navbar" brand, `href="#"`
   links, and a search form wired to nothing.
 - **Bootstrap is pinned to `6.0.0-alpha.1` from a CDN**, so there is no offline
   development and the alpha may introduce breaking changes.
-- *Fixed in this change:* `base.html` previously placed `{% block content %}`
-  after `</html>`, so every page's content rendered outside the document body.
