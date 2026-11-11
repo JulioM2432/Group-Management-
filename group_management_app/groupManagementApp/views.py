@@ -6,8 +6,8 @@ from .forms import ProjectForm, TaskForm
 from .models import Project
 
 
-def members(request):
-    return render(request, "home.html")
+def home(request):
+    return render(request, "home/home.html")
 
 
 @login_required
