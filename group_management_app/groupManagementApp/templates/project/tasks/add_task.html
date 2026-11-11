@@ -13,5 +13,12 @@
         </div>
     {% endfor %}
     <button type="submit" class="btn btn-primary">Save Task</button>
+    <button type="button" id="return" class="btn btn-primary">Cancel</button>
 </form>
+<script>
+  document.getElementById('return').addEventListener('click', () => {{
+    window.location.href = "/projects/{{project.id}}";
+  }});
+  
+</script>
 {% endblock %}

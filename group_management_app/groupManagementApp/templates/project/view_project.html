@@ -15,10 +15,40 @@
 <h2>Tasks</h2>
 {% for task in tasks %}
   <p>
-    {{ task.title }} (due {{ task.due_date|date:"M j" }})
+    {{ task.title }} (due {{ task.due_date|date:"M j, g:i A" }})
     {% if task.completed %}✓{% endif %}
+  </p>
+  <p>
+    {{ task.description }}
   </p>
 {% empty %}
   <p>No tasks yet.</p>
 {% endfor %}
+
+<button type="button" id="open-dialog" class="btn btn-primary">Add Task</button>
+<dialog class="dialog p-3" id="example-dialog">
+  <div class="dialog-head d-flex justify-content-between align-items-center">
+    <h2 class="dialog-title h5 mb-0">Dialog Title</h2>
+    <button type="button" class="btn-close" data-dialog-dismiss aria-label="Close"></button>
+  </div>
+  <div class="dialog-body py-3">
+    <p>Are You Sure?</p>
+  </div>
+  <div class="dialog-footer d-flex justify-content-between align-items-center">
+    <button type="button" class="btn btn-secondary" data-dialog-dismiss>Close</button>
+    <button type="button" id="add_task" class="btn btn-primary">Add Task</button>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById('example-dialog');
+  document.getElementById('open-dialog').addEventListener('click', () => dialog.showModal());
+  dialog.querySelectorAll('[data-dialog-dismiss]').forEach((btn) => {{
+    btn.addEventListener('click', () => dialog.close());
+  }});
+  document.getElementById('add_task').addEventListener('click', () => {{
+    window.location.href = "{{project.id}}/add_task";
+  }});
+</script>
+
 {% endblock %}
