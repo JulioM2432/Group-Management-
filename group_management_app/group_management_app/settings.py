@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'groupManagementApp'
+    'groupManagementApp',
+    'proj_calendar',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
