@@ -16,6 +16,7 @@
           python3
           python313Packages.django_6
           python313Packages.django-allauth
+          python313Packages.djangorestframework
         ];
       };
   };
