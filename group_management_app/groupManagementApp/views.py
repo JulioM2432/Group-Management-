@@ -1,10 +1,7 @@
-from django.template import loader
-from django.shortcuts import render, redirect   
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import LoginForm, ProjectForm, TaskForm
 from .models import Project
