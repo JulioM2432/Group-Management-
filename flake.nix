@@ -15,6 +15,7 @@
         packages = with pkgs; [
           python3
           python313Packages.django_6
+          python313Packages.django-allauth
         ];
       };
   };
