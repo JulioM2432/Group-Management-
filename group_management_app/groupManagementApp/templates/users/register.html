@@ -1,0 +1,42 @@
+{% block content %}
+    <style>
+        .register-page {
+            box-sizing: border-box;
+            width: min(90%, 500px);
+            margin: 40px auto;
+            text-align: left;
+            font-size: 1.4rem;
+        }
+
+        .register-page h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .register-page ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .register-page form > div,
+        .register-page form p,
+        .register-page form li {
+            margin-bottom: 1rem;
+        }
+
+        .register-page input,
+        .register-page button {
+            font-size: 1.2rem;
+            padding: 0.5rem;
+        }
+    </style>
+
+    <div class="register-page">
+        <h1>SignUp</h1>
+        <form class="form-with-validation" action="register/" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button>Submit</button>
+        </form>
+    </div>
+{% endblock %}

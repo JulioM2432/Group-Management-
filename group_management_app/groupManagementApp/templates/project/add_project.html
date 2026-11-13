@@ -1,0 +1,24 @@
+{% extends 'home/base.html' %}
+
+{% block tab_title %}
+<title>Gproj - New Project</title>
+{% endblock %}
+
+{% block content %}
+<h1>Add a New Project</h1>
+<form method="POST">
+  {% csrf_token %}
+
+  {% for field in form %}
+    <div class="mb-3">
+      <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}:</label>
+      {{ field }}
+      {% for error in field.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+
+  <button type="submit" class="btn btn-primary">Save Project</button>
+</form>
+{% endblock %}

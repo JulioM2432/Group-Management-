@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'groupManagementApp',
     'proj_calendar',
     'rest_framework'
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +132,7 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+# configuration
+SITE_ID = 1
+LOGIN_URL = '/login/'
