@@ -1,4 +1,9 @@
 {% extends 'home/base.html' %}
+
+{% block tab_title %}
+<title>Gproj - {{project.title}} - New Task</title>
+{% endblock %}
+
 {% block content %}
 <h1>Add Task to {{ project.title }}</h1>
 <form method="POST">
