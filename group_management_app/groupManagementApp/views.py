@@ -1,14 +1,32 @@
+from django.template import loader
+from django.shortcuts import render, redirect   
+from django.http import HttpResponse
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .forms import ProjectForm, TaskForm
+from .forms import LoginForm, ProjectForm, TaskForm
 from .models import Project
-
 
 def home(request):
     return render(request, "home/home.html")
 
+### Sign-in, Sign-out, Sign-up
+def sign_in(request):
+    if request.method == "GET":
+        form = LoginForm(request.GET)
+
+def sign_up(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'users/register.html', {'form': form})
 
 @login_required
 def add_project(request):

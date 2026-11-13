@@ -5,6 +5,10 @@ from django.db.models import Q
 
 User = get_user_model()
 
+class LoginForm(forms.Form):
+    user_name = forms.CharField(label='Username: ', max_length=70)
+    user_pass = forms.CharField(label="Password: ", max_length=70)
+
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
