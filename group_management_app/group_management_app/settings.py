@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     'groupManagementApp',
+    'proj_calendar',
+    'rest_framework',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -53,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'group_management_app.urls'

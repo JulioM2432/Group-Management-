@@ -1,10 +1,10 @@
 .direnv/
 .envrc
 
-# Python bytecode
+# the python cache files
 __pycache__/
 *.py[cod]
 
-# Local SQLite database (each contributor builds their own via `migrate`)
+# local development database
 group_management_app/db.sqlite3
 *.sqlite3.backup

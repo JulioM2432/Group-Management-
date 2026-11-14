@@ -25,3 +25,27 @@ GProj is a group management application designed for student collaboration on gr
 - \[Task Designation In Progress\]
 
 ## Further Information in PLANNING.md & ARCHITECTURE.md
+
+
+## User Stories:
+
+### Login/Registration:
+- As a user, I want to log into my account so I can access my group projects and activities.
+- As a student, I want to create an account so I can access the group management application and work on projects with my group.
+
+### Group Management:
+- As a student, I want to create a group so I can collaborate with other students on a project(s)
+- As a group member, I want to see who belongs to my group so I know who I'm collaborating with.
+- As a group creator, I want to be able to invite other students to my group so we can plan and work together on projects and assignments.
+
+### Tasks List/Board:
+- As a group member, I want to create tasks on a project board so we can divide our workload into manageable assignments.
+_ As a group member, I want to assign tasks to different group members so everyone knows what they're responsible for.
+
+### Calendar/Planner:
+- As a group member, I want to create calendar events so I can keep track of important project deadlines.
+- As a group member, I want to see upcoming group events so I can stay informed about meetings.
+
+### Labeling/Organization:
+- As a group member, I want to add labels to tasks so I can categorize and organize different types of work.
+- As a group member, I want to filter tasks by their labels so I can quickly find specific assignments.
