@@ -7,3 +7,4 @@ __pycache__/
 
 # Local SQLite database (each contributor builds their own via `migrate`)
 group_management_app/db.sqlite3
+*.sqlite3.backup
