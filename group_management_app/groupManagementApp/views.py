@@ -1,32 +1,38 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.forms import UserCreationForm
+# from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.contrib.auth import login
 
-from .forms import LoginForm, ProjectForm, TaskForm
+from .forms import ProjectForm, TaskForm
 from .models import Project
+from .forms import CustomUserCreationForm
 
 
 def home(request):
     return render(request, "home/home.html")
 
+def dashboard(request):
+    return render(request, "registration/dashboard.html")
+
 
 ### Sign-in, Sign-out, Sign-up
-def sign_in(request):
-    if request.method == "GET":
-        form = LoginForm(request.GET)
+# def sign_in(request):
+#     if request.method == "GET":
+#         form = LoginForm(request.GET)
 
 
 def sign_up(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            login(request, user)
             return redirect("home")
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
 
-    return render(request, 'users/register.html', {'form': form})
+    return render(request, 'registration/sign_up.html', {'form': form})
 
 
 def user_projects(user):
