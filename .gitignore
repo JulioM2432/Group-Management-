@@ -6,4 +6,5 @@ __pycache__/
 *.py[cod]
 
 # local development database
-group_management_app/db.sqlite3
+*.sqlite3
+*.sqlite3.backup

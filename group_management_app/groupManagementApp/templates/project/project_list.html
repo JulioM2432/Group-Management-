@@ -7,6 +7,7 @@
 {% block content %}
 <h1>My Projects</h1>
 <ul>
+  <a href="{% url 'add_project' %}" class="btn btn-primary mb-3">New project</a>
   {% for project in projects %}
     <li><a href="{% url 'project_view' project.pk %}">{{ project.title }}</a></li>
   {% empty %}

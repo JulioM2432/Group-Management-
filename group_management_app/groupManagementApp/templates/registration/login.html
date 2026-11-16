@@ -1,0 +1,42 @@
+{% extends "registration/base_users.html" %}
+
+{% block title %}Log in{% endblock title %}
+
+{% block eyebrow %}<p class="eyebrow">Welcome back</p>{% endblock eyebrow %}
+{% block heading %}Log in to your account{% endblock heading %}
+{% block subtitle %}<p class="subtitle">Pick up where you left off. Your plans are waiting.</p>{% endblock subtitle %}
+
+{% block content %}
+    <form method="post" novalidate>
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            <div class="form-error">
+                <ul class="errors">
+                    {% for error in form.non_field_errors %}<li>{{ error }}</li>{% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <div class="field">
+            <label for="{{ form.username.id_for_label }}">Email address</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+        </div>
+
+        <div class="field">
+            <label for="{{ form.password.id_for_label }}">Password</label>
+            {{ form.password }}
+            {{ form.password.errors }}
+        </div>
+
+        <div class="row-end">
+            <a class="link" href="{% url 'password_reset' %}">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn">Log in</button>
+        <input type="hidden" name="next" value="{% url 'home' %}">
+    </form>
+
+    <p class="footer-text">New here? <a class="link" href="{% url 'sign_up' %}">Create an account</a></p>
+{% endblock content %}
