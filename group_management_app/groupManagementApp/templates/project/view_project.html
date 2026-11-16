@@ -8,11 +8,11 @@
 <h1>{{ project.title }}</h1>
 <p>{{ project.description }}</p>
 <p>Due: {{ project.due_date|date:"M j, Y g:i A" }}</p>
-<p>Owner: {{ project.owner.username }}</p>
+<p>Owner: {% firstof project.owner.first_name project.owner.username %}</p>
 
 <h2>Contributors</h2>
-{% for user in contributors %}
-  <p>{{ user.username }}: {{ user.email }}</p>
+{% for member in contributors %}
+  <p>{% firstof member.first_name member.username %}: {{ member.email }}</p>
 {% empty %}
   <p>No contributors yet.</p>
 {% endfor %}

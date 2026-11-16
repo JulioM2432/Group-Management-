@@ -1,59 +1,159 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% block tab_title %}{% endblock %}
+    {% block tab_title %}<title>GPROJ</title>{% endblock %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Inter:wght@400;500;600;700&family=Mukta:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --green: #3d6b54;
+        --ink: #1b2e25;
+        --muted: #6b7280;
+        --nav-bg: #eef3ed;
+        --page-bg: #e4e4e4;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--page-bg);
+        font-family: "Inter", system-ui, sans-serif;
+        color: var(--ink);
+      }
+
+      /* ---------- Nav ---------- */
+      .gp-nav {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        padding: 12px 18px;
+        background: var(--nav-bg);
+        border-bottom: 6px solid var(--green);
+        font-family: "Mukta", system-ui, sans-serif;
+        font-size: 19px;
+      }
+      .gp-logo {
+        font-family: "Alfa Slab One", serif;
+        font-size: 24px;
+        line-height: 1;
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .gp-nav a, .gp-nav summary {
+        color: var(--ink);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        cursor: pointer;
+      }
+      .gp-nav .gp-logo { text-decoration: none; }
+      .gp-nav a.current { color: var(--muted); }
+      .gp-spacer { flex: 1; }
+      .gp-avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: #d9d9d9;
+      }
+      .gp-dropdown { position: relative; }
+      .gp-dropdown summary { list-style: none; }
+      .gp-dropdown summary::-webkit-details-marker { display: none; }
+      .gp-dropdown summary::after {
+        content: " \25BC";
+        font-size: 0.8em;
+        display: inline-block;
+      }
+      .gp-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 20;
+        min-width: 190px;
+        margin-top: 10px;
+        padding: 8px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 12px 30px rgba(30, 60, 45, 0.15);
+      }
+      .gp-menu a {
+        display: block;
+        padding: 10px 12px;
+        border-radius: 8px;
+        text-decoration: none;
+      }
+      .gp-menu a:hover { background: var(--nav-bg); }
+
+      /* ---------- Page ---------- */
+      .gp-main { padding: 18px 50px 40px; }
+      @media (max-width: 640px) {
+        .gp-nav { flex-wrap: wrap; gap: 14px; }
+        .gp-main { padding: 18px 20px 40px; }
+      }
+      
+      /* Account dropdown opens toward the left so it stays on screen */
+      .gp-menu.gp-menu-right { left: auto; right: 0; }
+
+      /* Logout button styled like the other menu items */
+      .gp-menu form { margin: 0; }
+      .gp-menu .gp-menu-btn {
+        display: block;
+        width: 100%;
+        padding: 10px 12px;
+        border: 0;
+        border-radius: 8px;
+        background: none;
+        font: inherit;
+        color: var(--ink);
+        text-align: left;
+        cursor: pointer;
+      }
+      .gp-menu .gp-menu-btn:hover { background: var(--nav-bg); }
+    </style>
+    {% block extra_head %}{% endblock extra_head %}
   </head>
   <body>
-<nav class="navbar md:navbar-expand bg-1">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarDrawer" aria-controls="navbarDrawer" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon" aria-hidden="true"></span>
-    </button>
-    <dialog class="drawer drawer-end" tabindex="-1" id="navbarDrawer" aria-labelledby="navbarDrawerLabel">
-      <div class="drawer-header">
-        <h5 class="drawer-title" id="navbarDrawerLabel">Menu</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
-      </div>
-      <div class="drawer-body mb-2 md:mb-0">
-        <ul class="nav navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <button class="nav-link" type="button" data-bs-toggle="menu" aria-expanded="false">
-              Menu
-            </button>
-            <div class="menu">
-              <a class="menu-item" href="#">Action</a>
-              <a class="menu-item" href="#">Another action</a>
-              <hr class="menu-divider">
-              <a class="menu-item" href="#">Something else here</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>
-        </ul>
-        <form class="hstack gap-2" role="search">
-          <input class="form-control" type="search" placeholder="Search" aria-label="Search"/>
-          <button class="btn-solid btn-icon theme-secondary" type="submit">
-            <svg class="bi" width="16" height="16"><use href="#search" /></svg>
-          </button>
-        </form>
-      </div>
-    </dialog>
-  </div>
-</nav>
-    <main class="container py-4">
+    <header class="gp-nav">
+      <a class="gp-logo" href="{% url 'home' %}">GPROJ</a>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'projects' %}">Projects</a>
+      <details class="gp-dropdown">
+        <summary>Group</summary>
+          <div class="gp-menu gp-menu-left">
+            <a href="#">Start Group</a>
+          </div>
+      </details>
+
+      <span class="gp-spacer"></span>
+
+      {% if user.is_authenticated %}
+        <details class="gp-dropdown">
+          <summary>Account</summary>
+          <div class="gp-menu gp-menu-right">
+            <a href="#">Settings</a>            
+            <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="gp-menu-btn">Log out</button>
+            </form>
+          </div>
+        </details>
+      {% else %}
+        <a href="{% url 'login' %}">Log in</a>
+      {% endif %}
+    </header>
+
+    <main class="gp-main">
       {% block content %}{% endblock %}
     </main>
+    
+    <script>
+      document.addEventListener("click", function (e) {
+        document.querySelectorAll(".gp-dropdown[open]").forEach(function (d) {
+          if (!d.contains(e.target)) d.removeAttribute("open");
+        });
+      });
+    </script>
   </body>
 </html>
-

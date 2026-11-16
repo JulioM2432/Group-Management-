@@ -1,26 +1,42 @@
 from django.shortcuts import render, redirect, get_object_or_404
 # from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
+from django.db.models import Prefetch, Q
 from django.contrib.auth import login
 
 from .forms import ProjectForm, TaskForm
-from .models import Project
+from .models import Project, Task
 from .forms import CustomUserCreationForm
+from django.utils import timezone
 
 
+@login_required
 def home(request):
-    return render(request, "home/home.html")
+    now = timezone.now()
+    projects = user_projects(request.user)
+
+    closest_projects = (
+        projects.filter(completed=False, due_date__gte=now)
+        .select_related("owner")
+        .prefetch_related(
+            "contributors",
+            Prefetch("tasks", queryset=Task.objects.order_by("due_date")),
+        )
+        .order_by("due_date")[:5]
+    )
+    closest_tasks = (
+        Task.objects.filter(project__in=projects, completed=False, due_date__gte=now)
+        .order_by("due_date")[:10]
+    )
+    return render(request, "home/home.html", {
+        "closest_projects": closest_projects,
+        "closest_tasks": closest_tasks,
+    })
 
 def dashboard(request):
+    if request.user.is_authenticated:
+        return redirect("home")
     return render(request, "registration/dashboard.html")
-
-
-### Sign-in, Sign-out, Sign-up
-# def sign_in(request):
-#     if request.method == "GET":
-#         form = LoginForm(request.GET)
-
 
 def sign_up(request):
     if request.method == "POST":
