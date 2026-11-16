@@ -8,3 +8,4 @@ __pycache__/
 # local development database
 *.sqlite3
 *.sqlite3.backup
+db.sqlite3
